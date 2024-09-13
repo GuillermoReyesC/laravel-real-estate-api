@@ -14,7 +14,7 @@
     <h1>Bienvenido</h1>
     <div class="button-container">
         <a href="{{ route('personas') }}"><button>Ir a Personas</button></a>
-        <a href="{{ route('viviendas') }}"><button>Ir a Propiedades</button></a>
+        <a href="{{ route('propiedades') }}"><button>Ir a Propiedades</button></a>
         <a href="{{ route('solicitud') }}"><button>Ir a Solicitud de Visita</button></a>
     </div>
 </body>

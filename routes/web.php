@@ -34,9 +34,9 @@ Route::get('/personas', function () {
 
 
 // Ruta para la vista de viviendas
-Route::get('/viviendas', function () {
-    return view('viviendas');
-})->name('viviendas');
+Route::get('/propiedades', function () {
+    return view('propiedades');
+})->name('propiedades');
 
 // Ruta para solicitud de visita
 Route::get('/solicitud', function () {

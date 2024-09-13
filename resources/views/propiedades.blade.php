@@ -66,7 +66,8 @@
                 const propiedades = await response.json();
                 const propiedadList = document.getElementById('propiedadList');
                 propiedadList.innerHTML = '<h2>Lista de Propiedades</h2>';
-
+                console.log(response,propiedades)
+                
                 if (propiedades.length === 0) {
                     propiedadList.innerHTML += `
                         <div class="alert alert-danger" role="alert">
@@ -75,7 +76,6 @@
                     `;
                     return;
                 }
-                console.log(response,propiedades)
 
                 propiedades.forEach(propiedad => {
                     const propiedadDiv = document.createElement('div');
@@ -100,13 +100,22 @@
         async function savePropiedad(event) {
             event.preventDefault();
 
-            const id = parseInt(document.getElementById('propiedadId').value, 10); // Convertir a entero
+            // Obtener los valores del formulario
+            const idValue = document.getElementById('propiedadId').value;
+            const id = idValue ? parseInt(idValue, 10) : null; // Convertir a entero si hay valor
             const direccion = document.getElementById('direccion').value;
             const ciudad = document.getElementById('ciudad').value;
             const descripcion = document.getElementById('descripcion').value;
-            const precio = parseFloat(document.getElementById('precio').value).toFixed(2); // Convertir a decimal
+            const precioValue = document.getElementById('precio').value;
+            const precio = parseFloat(precioValue).toFixed(2); // Convertir a decimal y redondear a dos decimales
 
-            if (isNaN(precio) || precio <= 0) {
+            // Validaciones
+            if (isNaN(id) && id !== null) {
+                alert('ID no válido.');
+                return;
+            }
+            
+            if (isNaN(parseFloat(precio)) || parseFloat(precio) <= 0) {
                 alert('El precio debe ser un número positivo.');
                 return;
             }
@@ -127,8 +136,8 @@
                 precio: typeof precio
             });
 
-            const method = id ? 'PUT' : 'POST';
-            const url = id ? `${apiUrl}/${id}` : apiUrl;
+            const method = id !== null ? 'PUT' : 'POST';
+            const url = id !== null ? `${apiUrl}/${id}` : apiUrl;
 
             try {
                 const response = await fetch(url, {
@@ -136,10 +145,10 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        direccion,
-                        ciudad,
-                        descripcion,
+                    body: JSON.stringify({ 
+                        direccion, 
+                        ciudad, 
+                        descripcion, 
                         precio: parseFloat(precio) // Asegúrate de enviar como decimal
                     })
                 });
@@ -183,15 +192,6 @@
                     method: 'DELETE'
                 });
 
-                // Mostrar los datos en la consola
-            console.log('Datos a enviar:', {
-                id
-                
-            });
-            console.log('Tipos de dato:', {
-                id: typeof id,
-                
-            });
                 if (response.ok) {
                     fetchPropiedades();
                     showMessage('success', 'Propiedad eliminada con éxito.');
