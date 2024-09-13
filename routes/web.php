@@ -23,4 +23,22 @@ Route::get('/', function () {
 
 Route::apiResource('propiedades', PropiedadController::class);
 Route::apiResource('personas', PersonaController::class);
-Route::apiResource('solicitudes-visitas', SolicitudVisitaController::class);
+Route::apiResource('solicitudes', SolicitudVisitaController::class);
+
+
+
+// Ruta para personas
+Route::get('/personas', function () {
+    return view('personas');
+})->name('personas');
+
+
+// Ruta para la vista de viviendas
+Route::get('/viviendas', function () {
+    return view('viviendas');
+})->name('viviendas');
+
+// Ruta para solicitud de visita
+Route::get('/solicitud', function () {
+    return view('solicitud');
+})->name('solicitud');

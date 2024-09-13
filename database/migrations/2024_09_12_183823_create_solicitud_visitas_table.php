@@ -30,6 +30,6 @@ class CreateSolicitudVisitasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud_visitas');
+        Schema::dropIfExists('solicitudes_visitas');
     }
 }
