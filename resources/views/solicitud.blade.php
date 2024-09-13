@@ -67,6 +67,7 @@
 
     <script>
         
+        const apikey = '35688d5f24fbf3d2c48275e588fc86405e0554ee';
         const apiUrl = 'http://localhost:8000/api/solicitudes';
         const personasUrl = 'http://localhost:8000/api/personas';
         const propiedadesUrl = 'http://localhost:8000/api/propiedades';
@@ -86,7 +87,13 @@
         // Poblar las personas en el select
         async function fetchPersonas() {
             try {
-                const response = await fetch(personasUrl);
+                const response = await fetch(personasUrl,
+                    {
+                        headers:{
+                            'X-RapidAPI-Key':apikey
+                        }
+                    }
+                );
                 const personas = await response.json();
                 console.log('Personas:', personas)
                 const personaSelect = document.getElementById('personaId');
@@ -104,7 +111,13 @@
         // Poblar las propiedades en el select
         async function fetchPropiedades() {
             try {
-                const response = await fetch(propiedadesUrl);
+                const response = await fetch(propiedadesUrl,
+                    {
+                        headers:{
+                            'X-RapidAPI-Key':apikey
+                        }
+                    }
+                );
                 const propiedades = await response.json();
                 console.log('Propiedades:', propiedades); // Log para depuración
                 const propiedadSelect = document.getElementById('propiedadId');
@@ -122,7 +135,13 @@
         // Obtener solicitudes de visita
         async function fetchSolicitudes() {
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrl,
+                    {
+                        headers:{
+                            'X-RapidAPI-Key':apikey
+                        }
+                    }
+                );
                 const solicitudes = await response.json();
                 console.log('Solicitudes:', solicitudes); // Log para depuración
                 const solicitudList = document.getElementById('solicitudList');
@@ -162,7 +181,8 @@
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'X-RapidAPI-Key':apikey
                     },
                     body: JSON.stringify({
                         personaId: personaId,
@@ -195,11 +215,12 @@
         const response = await fetch(`${apiUrl}/${id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-RapidAPI-Key':apikey
             },
             body: JSON.stringify({
-                persona_id: personaId,  // Cambia según la API espere
-                propiedad_id: propiedadId,  // Cambia según la API espere
+                persona_id: personaId,
+                propiedad_id: propiedadId,
                 fecha_visita: fechaVisita,
                 comentarios: comentarios || null,
             })
@@ -250,7 +271,11 @@
         // Editar solicitud
 // Editar solicitud
 function editSolicitud(id) {
-    fetch(`${apiUrl}/${id}`)
+    fetch(`${apiUrl}/${id}`, {
+                headers: {
+                    'X-RapidAPI-Key': apikey
+                }
+            })
         .then(response => response.json())
         .then(solicitud => {
             document.getElementById('solicitudId').value = solicitud.id;
@@ -289,7 +314,10 @@ function editSolicitud(id) {
 
             try {
                 const response = await fetch(`${apiUrl}/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        'X-RapidAPI-Key': apikey
+                    }
                 });
 
                 const responseData = await response.json();

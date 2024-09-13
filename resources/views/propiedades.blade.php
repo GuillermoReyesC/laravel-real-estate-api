@@ -46,6 +46,7 @@
 
     <script>
         const apiUrl = 'http://localhost:8000/api/propiedades';
+        const apikey = '35688d5f24fbf3d2c48275e588fc86405e0554ee';
 
         // Función para mostrar mensajes
         function showMessage(type, message) {
@@ -62,7 +63,13 @@
         // Obtener y mostrar las propiedades
         async function fetchPropiedades() {
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrl,
+                    {
+                        headers:{
+                            'X-RapidAPI-Key':apikey
+                        }
+                    }
+                );
                 const propiedades = await response.json();
                 const propiedadList = document.getElementById('propiedadList');
                 propiedadList.innerHTML = '<h2>Lista de Propiedades</h2>';
@@ -143,13 +150,14 @@
                 const response = await fetch(url, {
                     method,
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'X-RapidAPI-Key': apikey
                     },
-                    body: JSON.stringify({ 
-                        direccion, 
-                        ciudad, 
-                        descripcion, 
-                        precio: parseFloat(precio) // Asegúrate de enviar como decimal
+                    body: JSON.stringify({
+                        direccion,
+                        ciudad,
+                        descripcion,
+                        precio: parseFloat(precio)
                     })
                 });
 
@@ -170,7 +178,11 @@
 
         // Editar una propiedad
         function editPropiedad(id) {
-            fetch(`${apiUrl}/${id}`)
+            fetch(`${apiUrl}/${id}`, {
+                headers: {
+                    'X-RapidAPI-Key': apikey
+                }
+            })
                 .then(response => response.json())
                 .then(propiedad => {
                     document.getElementById('propiedadId').value = propiedad.id;
@@ -187,9 +199,15 @@
 
         // Eliminar una propiedad
         async function deletePropiedad(id) {
+            if (!confirm('¿Estás seguro de que deseas eliminar esta propiedad?')) {
+                return;
+            }
             try {
                 const response = await fetch(`${apiUrl}/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        'X-RapidAPI-Key': apikey
+                    }
                 });
 
                 if (response.ok) {
