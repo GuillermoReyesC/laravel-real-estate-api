@@ -27,6 +27,7 @@ Route::apiResource('solicitudes', SolicitudVisitaController::class);
 
 
 
+
 // Ruta para personas
 Route::get('/personas', function () {
     return view('personas');
