@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::apiResource('propiedades', PropiedadController::class);
 Route::apiResource('personas', PersonaController::class);
 Route::apiResource('solicitudes', SolicitudVisitaController::class);
+   
 
 
 

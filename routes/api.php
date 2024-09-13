@@ -21,7 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('personas', PersonaController::class);
-Route::apiResource('propiedades', PropiedadController::class);
-Route::apiResource('solicitudes', SolicitudVisitaController::class);
+Route::middleware('validate.api.key')->group(function () {
+    Route::apiResource('personas', PersonaController::class);
+    Route::apiResource('propiedades', PropiedadController::class);
+    Route::apiResource('solicitudes', SolicitudVisitaController::class);
+
+
+});
 
