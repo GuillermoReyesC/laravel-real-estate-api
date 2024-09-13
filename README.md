@@ -20,33 +20,41 @@ Este proyecto es una API RESTful para gestionar propiedades inmobiliarias. Permi
 ## Configuración del Entorno de Desarrollo
 
 1. Clona el repositorio en tu máquina local:
-   ´´
-        git clone https://github.com/GuillermoReyesC/laravel-real-estate-api
-        o bien crea un nuevo proyecto
-        composer create-project --prefer-dist laravel/laravel nombre_proyecto´´´
+   
+    ```
+    git clone https://github.com/GuillermoReyesC/laravel-real-estate-api
+    o bien crea un nuevo proyecto
+    composer create-project --prefer-dist laravel/laravel nombre_proyecto 
+    ```
 3.  cd nombre_proyecto
 4.  composer install
 5.  configura tu archivo env
 6.  creamos migraciones y models para las entidades:
-        php artisan make:model Propiedad -m
-        php artisan make:model Persona -m
-        php artisan make:model SolicitudVisita -m
+    ```
+    php artisan make:model Propiedad -m
+    php artisan make:model Persona -m
+    php artisan make:model SolicitudVisita -m
+    ```
 7.  debemos definir correctamente los datos de las migraciones para las tablas a crear.
 8.  ejecutar migraciones con:
-        php artisan migrate
+        ```php artisan migrate
+        ```
 9.  definimos los modelos y relaciones en el model
 
 10. creamos controladores de tipo resource para mayor accesibilidad
-
-   php artisan make:controller PropiedadController --resource
-   php artisan make:controller PersonaController --resource
-   php artisan make:controller SolicitudVisitaController --resource
-
-   Definimos las rutas en routes/api.php
+    ```
+        php artisan make:controller PropiedadController --resource
+        php artisan make:controller PersonaController --resource
+        php artisan make:controller SolicitudVisitaController --resource
+    ```
+11. Definimos las rutas en routes/api.php
    
+12. A Codear!
+    asegurarnos de agregar lo necesario a los modelos, migraciones y las vistas .blade
 
-   asegurarnos de  agregar lo necesario a los modelos, migraciones y las vistas .blade
-
-   Asegúrate de definir correctamente los atributos y relaciones en los modelos.
+    Asegúrate de definir correctamente los atributos y relaciones en los modelos.
     Ajusta las migraciones si es necesario para reflejar correctamente las entidades y relaciones.
     Si usas vistas blade, crea o modifica las vistas en resources/views.
+
+    recuerda agregar el codigo necesario para que funcione tu controller con el blade.
+    en este caso creé 3 ramas por cada entidad y al finar les hice merge a Master
