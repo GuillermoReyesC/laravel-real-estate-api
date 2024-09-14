@@ -38,7 +38,7 @@ Este proyecto es una API RESTful para gestionar propiedades inmobiliarias. Permi
     ```
     -composer install
     ```
-5.  configura tu archivo env
+5.  configura tu archivo env⌨️
     -
     ```
     DB_CONNECTION=mysql
@@ -50,30 +50,30 @@ Este proyecto es una API RESTful para gestionar propiedades inmobiliarias. Permi
 
 
     ```
-6.  Creamos migraciones y models para las entidades:
+6.  Creamos migraciones y models para las entidades⌨️
     -
     ```
     php artisan make:model Propiedad -m
     php artisan make:model Persona -m
     php artisan make:model SolicitudVisita -m
     ```
-7.  Definir correctamente los datos de las migraciones para las tablas a crear.
+7.  Definir correctamente los datos de las migraciones para las tablas a crear⌨️
     -
-8.  ejecutar migraciones con:
+8.  ejecutar migraciones con:⌨️
     -
     ```
     php artisan migrate
     ```
-9.  definimos los modelos y relaciones en el model
+9.  definimos los modelos y relaciones en el model⌨️
     -
-10. creamos controladores de tipo resource para mayor accesibilidad
+10. creamos controladores de tipo resource para mayor accesibilidad⌨️
     -
     ```
     php artisan make:controller PropiedadController --resource
     php artisan make:controller PersonaController --resource
     php artisan make:controller SolicitudVisitaController --resource
     ```
-11. Definimos las rutas en routes/api.php
+11. Definimos las rutas en routes/api.php⌨️
     -
    
 12. A Codear!👨‍💻👩‍💻
