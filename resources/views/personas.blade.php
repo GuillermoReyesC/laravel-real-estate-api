@@ -48,7 +48,7 @@
 
     <script>
         const apiUrl = 'http://localhost:8000/api/personas';
-        const apikey = '35688d5f24fbf3d2c48275e588fc86405e0554ee';
+        const apikey = '35688d5f24fbf3d2c48275e588fc86405e0554ee';  //esto no deberiamos hacerlo, nunca
         // Mostrar mensaje de estado
         function showMessage(type, message) {
             const messageDiv = document.getElementById('message');

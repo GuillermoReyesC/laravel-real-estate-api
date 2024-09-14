@@ -1,0 +1,995 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Real state",
+        "description": "API para gestionar propiedades inmobiliarias",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/personas": {
+            "get": {
+                "tags": [
+                    "Persona"
+                ],
+                "summary": "Obtener todas las personas",
+                "operationId": "8601618afc784c4736e52022f7f6f047",
+                "responses": {
+                    "200": {
+                        "description": "Lista de personas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Persona"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Persona"
+                ],
+                "summary": "Crear una nueva persona",
+                "operationId": "d016dca10e1a596471fe5aa5d4c99841",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Persona"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Persona creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Persona"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/personas/{id}": {
+            "get": {
+                "tags": [
+                    "Persona"
+                ],
+                "summary": "Obtener una persona por ID",
+                "operationId": "9b70ed1d108dd682ec86b7c48f328884",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Persona encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Persona"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Persona no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Persona no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Persona"
+                ],
+                "summary": "Actualizar una persona por ID",
+                "operationId": "2a6e07dc32d26f218b13c0a2dc442fdf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Persona"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Persona actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Persona"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Persona no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Persona no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Persona"
+                ],
+                "summary": "Eliminar una persona por ID",
+                "operationId": "8564ed4ed7e2d07b09bda4aac6184710",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la persona",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Persona eliminada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Persona eliminada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Persona no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Persona no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/propiedades": {
+            "get": {
+                "tags": [
+                    "Propiedad"
+                ],
+                "summary": "Obtener todas las propiedades",
+                "operationId": "1428dc672691f51f4a853ddcf6faff0e",
+                "responses": {
+                    "200": {
+                        "description": "Lista de propiedades",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Propiedad"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Propiedad"
+                ],
+                "summary": "Crear una nueva propiedad",
+                "operationId": "8f14f04fae02e4fe798f67893120cbf3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Propiedad"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Propiedad creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Propiedad"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Errores de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al guardar propiedad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al guardar propiedad: mensaje del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/propiedades/{id}": {
+            "get": {
+                "tags": [
+                    "Propiedad"
+                ],
+                "summary": "Obtener una propiedad por ID",
+                "operationId": "14c81eabb4a966c2adf109f8a124407e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la propiedad",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Propiedad encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Propiedad"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Propiedad no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Propiedad no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Propiedad"
+                ],
+                "summary": "Actualizar una propiedad por ID",
+                "operationId": "2baabea464354f0ae482f92a6abfa270",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la propiedad",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Propiedad"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Propiedad actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Propiedad"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Propiedad no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Propiedad no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Errores de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al actualizar propiedad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al actualizar propiedad: mensaje del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Propiedad"
+                ],
+                "summary": "Eliminar una propiedad por ID",
+                "operationId": "ac46a6152a7d0158329dd1adc227c8b5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la propiedad",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Propiedad eliminada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Propiedad eliminada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Propiedad no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Propiedad no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al eliminar propiedad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al eliminar propiedad: mensaje del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/solicitudes": {
+            "get": {
+                "tags": [
+                    "SolicitudVisita"
+                ],
+                "summary": "Obtener todas las solicitudes de visita",
+                "operationId": "086431570d6b2493541026e645665995",
+                "responses": {
+                    "200": {
+                        "description": "Lista de solicitudes de visita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SolicitudVisita"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "SolicitudVisita"
+                ],
+                "summary": "Crear una nueva solicitud de visita",
+                "operationId": "882472fbd0bd21050a21b1b0134128f5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SolicitudVisita"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Solicitud de visita creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolicitudVisita"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Errores de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al guardar solicitud de visita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al guardar solicitud de visita: mensaje del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/solicitudes/{id}": {
+            "get": {
+                "tags": [
+                    "SolicitudVisita"
+                ],
+                "summary": "Obtener una solicitud de visita por ID",
+                "operationId": "038d064d6aef8c471de5df25f09bbe23",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la solicitud de visita",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud de visita encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolicitudVisita"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Solicitud de visita no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Solicitud de visita no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "SolicitudVisita"
+                ],
+                "summary": "Actualizar una solicitud de visita por ID",
+                "operationId": "4d1632e7699285f40c8183e1382bbc24",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la solicitud de visita",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SolicitudVisita"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Solicitud de visita actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolicitudVisita"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Solicitud de visita no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Solicitud de visita no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Errores de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al actualizar solicitud de visita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al actualizar solicitud de visita: mensaje del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "SolicitudVisita"
+                ],
+                "summary": "Eliminar una solicitud de visita por ID",
+                "operationId": "e4042d1388d39e7f957beafa43921186",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la solicitud de visita",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Solicitud de visita eliminada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Solicitud de visita eliminada correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Solicitud de visita no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Solicitud de visita no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al eliminar solicitud de visita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al eliminar solicitud de visita: mensaje del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKeyAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Persona": {
+                "title": "Persona",
+                "description": "Modelo de Persona",
+                "required": [
+                    "nombre",
+                    "email",
+                    "direccion"
+                ],
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "example": "Juan Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "juan@example.com"
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "example": 12345678
+                    }
+                },
+                "type": "object"
+            },
+            "Propiedad": {
+                "title": "Propiedad",
+                "description": "Modelo de Propiedad",
+                "required": [
+                    "direccion",
+                    "ciudad",
+                    "precio"
+                ],
+                "properties": {
+                    "direccion": {
+                        "type": "string",
+                        "example": "Calle Falsa 123"
+                    },
+                    "ciudad": {
+                        "type": "string",
+                        "example": "Ciudad Ejemplo"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripción de la propiedad"
+                    },
+                    "precio": {
+                        "type": "integer",
+                        "example": 100000
+                    }
+                },
+                "type": "object"
+            },
+            "SolicitudVisita": {
+                "title": "Solicitud de Visita",
+                "description": "Modelo de Solicitud de Visita",
+                "required": [
+                    "persona_id",
+                    "propiedad_id",
+                    "fecha_visita"
+                ],
+                "properties": {
+                    "persona_id": {
+                        "type": "integer",
+                        "example": 14
+                    },
+                    "propiedad_id": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "fecha_visita": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-09-12"
+                    },
+                    "comentarios": {
+                        "type": "string",
+                        "example": "Comentario sobre la visita"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "apiKeyAuth": {
+                "type": "apiKey",
+                "name": "X-RapidAPI-Key",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Persona",
+            "description": "Persona"
+        },
+        {
+            "name": "Propiedad",
+            "description": "Propiedad"
+        },
+        {
+            "name": "SolicitudVisita",
+            "description": "SolicitudVisita"
+        }
+    ],
+    "security": [
+        {
+            "apiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-RapidAPI-Key"
+            }
+        }
+    ]
+}
